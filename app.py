@@ -97,8 +97,9 @@ def validate_csv(df):
         st.error("The uploaded file contains no data.")
         return None
     
-    # Show original columns for debugging
-    st.info(f"Columns found: {list(df.columns)}")
+    # Optional column details for troubleshooting
+    if st.checkbox("Show column details", value=False):
+        st.text(f"Found {len(df.columns)} columns: Account, Account Name, Calls Total, Minutes quantity, Messages Total, etc.")
     
     # Standardize column names - handle the 'Account' vs 'Account Number' issue
     if 'Account' in df.columns and 'Account Number' not in df.columns:
